@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# (c) Jakub Tymejczyk 2010
+# $1 = folder z RAWami
+# $2 = folder z JPEGami
+
+cd "$1"
+
+for f in *
+do
+f=`echo "$f" | sed -e 's/CR2/JPG/g'`
+if [ -e "$2/$f" ]; then
+echo "$f" jestem
+else
+f=`echo "$f" | sed -e 's/JPG/CR2/g'`
+echo "$f" nie ma
+rm "$1/$f"
+fi
+done
